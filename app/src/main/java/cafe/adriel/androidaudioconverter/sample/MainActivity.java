@@ -4,10 +4,11 @@ import android.Manifest;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.File;
 
@@ -38,26 +39,10 @@ public class MainActivity extends AppCompatActivity {
         Log.d("test", Environment.getExternalStorageDirectory().getAbsolutePath() + "/audio_test");
         File wavFile = new File(Environment.getExternalStorageDirectory(), "/audio_test/recorded_audio.wav");
         Log.e("test", wavFile.getAbsolutePath());
-//        IConvertCallback callback = new IConvertCallback() {
-//            @Override
-//            public void onSuccess(File convertedFile) {
-//                Toast.makeText(MainActivity.this, "SUCCESS: " + convertedFile.getPath(), Toast.LENGTH_LONG).show();
-//            }
-//
-//            @Override
-//            public void onFailure(Exception error) {
-//                Toast.makeText(MainActivity.this, "ERROR: " + error.getMessage(), Toast.LENGTH_LONG).show();
-//            }
-//        };
-        Toast.makeText(this, "Converting audio file...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Converting audio file..." + Environment.getExternalStorageDirectory(), Toast.LENGTH_SHORT).show();
 
         AndroidAudioConverter.load(this, Environment.getExternalStorageDirectory() + "/audio_test/recorded_audio.wav");
 
-//        AndroidAudioConverter.with(this)
-//                .setFile(wavFile)
-//                .setFormat(AudioFormat.MP3)
-//                .setCallback(callback)
-//                .convert();
     }
 
 }
