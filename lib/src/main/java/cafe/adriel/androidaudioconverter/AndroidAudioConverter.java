@@ -65,21 +65,24 @@ public class AndroidAudioConverter {
 
     private static void cmdExcute(Context context, String file_path) {
         try {
-            String[] cmd = {"-i", file_path, "-ss", "0", "-t", "30", file_path.replace(".wav", ".flac")};
+            int lastIdx = file_path.lastIndexOf(".");
+            String fileKind = file_path.substring(lastIdx);
+//            String[] cmd = {"-i", file_path, "-ss", "0", "-t", "30"};
+            String[] cmd = {"-i", file_path, file_path.replace(fileKind, ".mp3")};
             FFmpeg.getInstance(context).execute(cmd, new FFmpegExecuteResponseHandler() {
                 @Override
                 public void onSuccess(String message) {
-                    Log.e("ffmpeg", "success");
+                    Log.w("Lee", "onSuccess");
                 }
 
                 @Override
                 public void onProgress(String message) {
-
+                    Log.i("Lee", "onProgress : " + message);
                 }
 
                 @Override
                 public void onFailure(String message) {
-
+                    Log.e("Lee", "onFailure : " + message);
                 }
 
                 @Override
